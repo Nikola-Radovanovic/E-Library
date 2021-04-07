@@ -1,0 +1,86 @@
+﻿@model Library.ViewModels.CreateReservationUserByBookIdViewModel
+@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    ViewData["Title"] = "CreateReservationFormUser";
+    Layout = "~/Views/Reservations/_ReservationLayout.cshtml";
+}
+
+<div class="row bg-warning">
+    <div class="col-lg-12">
+        <h3 class="text-center mt-2 mb-2">REZERVACIJA</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="text-center mt-3">@Model.Book.Title</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <table class="table table-bordered bg-light mt-2">
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.AuthorId)</td>
+                    <td>@Html.DisplayFor(b => b.Book.Author.AuthorName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.PublisherId)</td>
+                    <td>@Html.DisplayFor(b => b.Book.Publisher.PublisherName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.GenreId)</td>
+                    <td>@Html.DisplayFor(b => b.Book.Genre.GenreName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.NumberOfPages)</td>
+                    <td>@Html.DisplayFor(b => b.Book.NumberOfPages)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.ISBN)</td>
+                    <td>@Html.DisplayFor(b => b.Book.ISBN)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(b => b.Book.NumberOfCopies)</td>
+                    <td>@Html.DisplayFor(b => b.Book.NumberOfCopies)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<form asp-action="CreateReservationUser" asp-controller="Reservations" class="mt-2">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group text-center">
+                <select asp-for="Reservation.BookId" class="form-control" hidden="hidden">
+                    <option value="@Model.Book.Id">@Model.Book.Title</option>
+                </select>
+                <span asp-validation-for="Reservation.BookId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <label asp-for="Reservation.RentedBooksNumber" class="control-label mt-2"></label>
+        </div>
+        <div class="col-lg-2">
+            <div class="form-group">
+                <input asp-for="Reservation.RentedBooksNumber" class="form-control" />
+                <span asp-validation-for="Reservation.RentedBooksNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            @Html.HiddenFor(r => r.Reservation.Id)
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <input type="submit" value="Rezerviši" class="btn btn-outline-warning btn-block text-dark float-right" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,37 @@
+﻿@model Library.ViewModels.CreateOrUpdateReservationViewModel
+@{
+    ViewData["Title"] = "CreateReservationForm";
+    Layout = "~/Views/Reservations/_ReservationLayout.cshtml";
+}
+
+<form asp-action="CreateOrUpdateReservation" asp-controller="Reservations">
+    <div class="form-group text-center">
+        <label asp-for="Reservation.BookId" class="control-label"></label>
+        <select asp-for="Reservation.BookId" asp-items="Model.BookList" class="form-control">
+            <option value="" selected disabled>Izaberite naslov</option>
+        </select>
+        <span asp-validation-for="Reservation.BookId" class="text-danger"></span>
+    </div>
+    <div class="form-group text-center">
+        <label asp-for="Reservation.ApplicationUserId" class="control-label"></label>
+        <select asp-for="Reservation.ApplicationUserId" asp-items="Model.UserList" class="form-control">
+            <option value="" selected disabled>Izaberite korisnika</option>
+        </select>
+        <span asp-validation-for="Reservation.ApplicationUserId" class="text-danger"></span>
+    </div>
+    <div class="form-group text-center">
+        <label asp-for="Reservation.RentedBooksNumber" class="control-label"></label>
+        <input asp-for="Reservation.RentedBooksNumber" class="form-control" />
+        <span asp-validation-for="Reservation.RentedBooksNumber" class="text-danger"></span>
+    </div>
+    @Html.HiddenFor(b => b.Reservation.Id)
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Rezerviši knjigu" class="btn btn-success btn-block" />
+    </div>
+</form>
+
+@section Scripts
+{ 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

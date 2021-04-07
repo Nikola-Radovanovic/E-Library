@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Library.Models.LibraryModels.Book>
+@{
+    ViewData["Title"] = "GetBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-lg-12 text-center">
+        <h2 class="display-3">Dobro došli u E-Biblioteku</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="h4 text-center mt-2">
+            Da bi ste rezervisali knjigu morate biti prijavljeni!
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-lg-12 col-md-12">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.Title)</th>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.AuthorId)</th>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.PublisherId)</th>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.GenreId)</th>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.NumberOfPages)</th>
+                    <th class="text-center">@Html.DisplayNameFor(b => b.NumberOfCopies)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td class="text-center">@book.Title</td>
+                        <td class="text-center">@book.Author.AuthorName</td>
+                        <td class="text-center">@book.Publisher.PublisherName</td>
+                        <td class="text-center">@book.Genre.GenreName</td>
+                        <td class="text-center">@book.NumberOfPages</td>
+                        <td class="text-center">
+                            @if (book.NumberOfCopies == 0)
+                            {
+                                <button class="btn btn-light text-danger" disabled>Nema na stanju</button>
+                            }
+                            else
+                            {
+                                @book.NumberOfCopies
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

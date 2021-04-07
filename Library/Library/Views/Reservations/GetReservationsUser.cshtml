@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Library.Models.LibraryModels.Reservation>
+@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    ViewData["Title"] = "GetReservationsUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="text-center">Moje rezervacije</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <table id="reservations" class="table table-striped mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">@Html.DisplayNameFor(r => r.Book.Title)</th>
+                    <th class="text-center">@Html.DisplayNameFor(r => r.Book.AuthorId)</th>
+                    <th class="text-center">@Html.DisplayNameFor(r => r.RentedBooksNumber)</th>
+                    <th class="text-center">@Html.DisplayNameFor(r => r.RentDate)</th>
+                    <th class="text-center">@Html.DisplayNameFor(r => r.ReturnDate)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+                {
+                    @if (httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value == reservation.ApplicationUserId)
+                    {
+                        <tr>
+                            <td class="text-center">@reservation.Book.Title</td>
+                            <td class="text-center">@reservation.Book.Author.AuthorName</td>
+                            <td class="text-center">@reservation.RentedBooksNumber</td>
+                            <td class="text-center">@string.Format("{0:dd/MMM/yyyy}", reservation.RentDate)</td>
+                            <td class="text-center">@string.Format("{0:dd/MMM/yyyy}", reservation.ReturnDate)</td>
+                            <td class="text-center">
+                                @if (string.IsNullOrWhiteSpace(reservation.ReturnDate.ToString()))
+                                {
+                                    <button class="btn btn-warning" disabled>Čeka se potvrda rezervacije</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-warning" disabled>Prihvaćena rezervacija</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

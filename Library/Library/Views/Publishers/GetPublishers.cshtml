@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Library.Models.LibraryModels.Publisher>
+@{
+    ViewData["Title"] = "GetPublishers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-3">
+        <div class="row">
+            <div class="col-lg-7">
+                <h3 class="text-center">Izdavači</h3>
+            </div>
+            <div class="col-lg-5">
+                <a asp-action="CreatePublisherForm" asp-controller="Publishers" class="btn btn-success float-right">Dodaj novog izdavača</a>
+            </div>
+        </div>
+        <table class="table table-hover mt-2">
+            <tbody>
+                @foreach (var publisher in Model)
+                {
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle">@publisher.PublisherName</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Izmeni", "UpdatePublisherForm", "Publishers", new { Id = publisher.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Obriši", "DeletePublisher", "Publishers", new { Id = publisher.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

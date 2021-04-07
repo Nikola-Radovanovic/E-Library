@@ -1,0 +1,17 @@
+﻿@model Library.Models.LibraryModels.Publisher
+@{
+    ViewData["Title"] = "DeletePublisher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Da li ste sigurni da želite obrisati izdavača "@Model.PublisherName"?</h2>
+<div class="row">
+    <div class="col-lg-4">
+        <form asp-action="DeletePublisher" asp-controller="Publishers">
+            @Html.HiddenFor(p => p.Id)
+            <div class="form-group">
+                <input type="submit" value="Obriši izdavača" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>

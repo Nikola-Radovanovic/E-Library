@@ -1,0 +1,22 @@
+﻿@model Library.Models.LibraryModels.Author
+@{
+    ViewData["Title"] = "UpdateAuthorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-4">
+        <form asp-action="CreateOrUpdateAuthor" asp-controller="Authors" method="post">
+            <div class="form-group">
+                <label asp-for="AuthorName" class="control-label"></label>
+                <input asp-for="AuthorName" class="form-control" required/>
+                <span asp-validation-for="AuthorName" class="text-danger"></span>
+            </div>
+            @Html.HiddenFor(a => a.Id)
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <input type="submit" value="Izmeni podatke" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>

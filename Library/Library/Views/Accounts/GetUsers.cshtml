@@ -1,0 +1,43 @@
+﻿@model List<Library.Areas.Identity.Data.ApplicationUser>
+@{
+    ViewData["Title"] = "GetUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">Korisnici</h3>
+<hr />
+
+<partial name="_UsersRolesNavbarPartial" />
+
+<div class="row">
+    <div class="col-lg-12">
+        @if (Model is null)
+        {
+            <h3>Nema korisnika u bazi</h3>
+        }
+        else
+        {
+            <table class="table table-bordered mt-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Username</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@user.Id</td>
+                            <td class="text-center">@user.UserName</td>
+                            <td class="text-center">
+                                <a asp-action="DisplayUser" asp-controller="Accounts" class="btn btn-outline-warning">Prikaži korisnika</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Library.Models.LibraryModels.Author>
+@{
+    ViewData["Title"] = "GetAuthors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-3">
+        <div class="row">
+            <div class="col-lg-7">
+                <h3 class="text-center">Autori</h3>
+            </div>
+            <div class="col-lg-5">
+                <a asp-action="CreateAuthorForm" asp-controller="Authors" class="btn btn-success float-right">Dodaj novog autora</a>
+            </div>
+        </div>
+        <table id="authors" class="table table-hover mt-2">
+            <tbody>
+                @foreach (var author in Model)
+                {
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle">@author.AuthorName</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Izmeni", "UpdateAuthorForm", "Authors", new { Id = author.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Obriši", "DeleteAuthor", "Authors", new { Id = author.Id }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

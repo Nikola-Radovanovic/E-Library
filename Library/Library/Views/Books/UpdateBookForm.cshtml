@@ -1,0 +1,71 @@
+﻿@model Library.ViewModels.CreateOrUpdateBookViewModel
+@{
+    ViewData["Title"] = "UpdateBookForm";
+    Layout = "~/Views/Books/_BookLayout.cshtml";
+}
+
+<form asp-action="CreateOrUpdateBook" asp-controller="Books">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group text-center">
+        <label asp-for="Book.Title" class="control-label"></label>
+        <input asp-for="Book.Title" class="form-control" />
+        <span asp-validation-for="Book.Title" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group text-center">
+                <label asp-for="Book.AuthorId" class="control-label"></label>
+                <select asp-for="Book.AuthorId" asp-items="Model.AuthorList" class="form-control">
+                    <option value="" disabled selected>Izaberite autora</option>
+                </select>
+                <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group text-center">
+                <label asp-for="Book.PublisherId" class="control-label"></label>
+                <select asp-for="Book.PublisherId" asp-items="Model.PublisherList" class="form-control">
+                    <option value="" disabled selected>Izaberite izdavača</option>
+                </select>
+                <span asp-validation-for="Book.PublisherId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+            <div class="form-group text-center">
+                <label asp-for="Book.GenreId" class="control-label"></label>
+                <select asp-for="Book.GenreId" asp-items="Model.GenreList" class="form-control" multiple="multiple"></select>
+                <span asp-validation-for="Book.GenreId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group text-center">
+                <label asp-for="Book.NumberOfPages" class="control-label"></label>
+                <input asp-for="Book.NumberOfPages" class="form-control" />
+                <span asp-validation-for="Book.NumberOfPages" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group text-center">
+                <label asp-for="Book.NumberOfCopies" class="control-label"></label>
+                <input asp-for="Book.NumberOfCopies" class="form-control" />
+                <span asp-validation-for="Book.NumberOfCopies" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group text-center">
+                <label asp-for="Book.ISBN" class="control-label"></label>
+                <input asp-for="Book.ISBN" class="form-control" />
+                <span asp-validation-for="Book.ISBN" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(b => b.Book.Id)
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Izmeni podatke" class="btn btn-primary btn-block" />
+    </div>
+</form>
