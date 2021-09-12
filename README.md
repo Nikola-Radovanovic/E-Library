@@ -15,3 +15,8 @@ Posetilac (korisnik):
   - Prijavljeni korisnik može videti knjige koje je rezervisao, prikazuju se prihvaćene rezervacije i rezervacije za koje se čeka potvrda bibliotekara
   - Ukoliko postoji slobodan primerak knjige, nakon potvrđene rezervacije, korisniku se automatski generiše datum izdavanja i datum do kada treba vratiti knjigu
   - Korisnik može rezervisati najviše pet primeraka jedne knjige
+
+Admin:
+  - Administracija korisnika
+  - Dodavanje bibliotekara
+  - Podržane sve funkcionalnosti bibliotekara i registrovanog korisnika
