@@ -12,7 +12,8 @@ Bibliotekar:
 
 Posetilac (korisnik):
   - Prijavljeni i neprijavljeni posetioci mogu videti sve knjige u biblioteci i dostupnost svake od njih (koliko je primeraka trenutno na stanju)
-  - Prijavljeni korisnik može videti knjige koje je rezervisao, prikazuju se prihvaćene rezervacije i rezervacije za koje se čeka potvrda bibliotekara
+  - Prijavljeni korisnik može praviti rezervacije različitih naslova
+  - Prijavljeni korisnik može videti knjige koje je rezervisao, prikazuju se potvrđene rezervacije i rezervacije za koje se čeka potvrda bibliotekara
   - Ukoliko postoji slobodan primerak knjige, nakon potvrđene rezervacije, korisniku se automatski generiše datum izdavanja i datum do kada treba vratiti knjigu
   - Korisnik može rezervisati najviše pet primeraka jedne knjige(naslova)
 
