@@ -1,2 +1,3 @@
 # E-Library
-ASP.NET Core project for book reservation
+ASP.NET Core MVC aplikacija za rezervaciju knjiga (ASP.NET MVC + Entity Framework).
+Dva tipa korisnika: bibliotekar i posetilac.
