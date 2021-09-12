@@ -10,3 +10,6 @@ Bibliotekar:
   - Označavanje da je knjiga vraćena
   - Može u svakom trenutku vršiti kompletan CRUD nad rezervacijama
 
+Posetilac:
+  - skdfjhksdf
+  - sjdhfjhsdbf
