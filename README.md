@@ -10,5 +10,5 @@ Bibliotekar:
   - Može u svakom trenutku vršiti kompletan CRUD nad rezervacijama
 
 Posetilac:
-  - skdfjhksdf
+  - Prijavljeni i neprijavljeni posetilac može videti sve knjige u biblioteci i dostupnost svake od njih (koliko je primeraka trenutno na stanju)
   - sjdhfjhsdbf
